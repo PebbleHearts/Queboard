@@ -1,0 +1,1 @@
+Simple clipboard manager to paste items in the order in which they are copied
