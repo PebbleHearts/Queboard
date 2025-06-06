@@ -5,7 +5,7 @@ import Queue from './queue.js';
 const keyboardListener = new GlobalKeyboardListener();
 
 let listening = false;
-const queuedClipboardHistory = new Queue();
+const queuedClipboardHistory = new Queue(100);
 
 const handleCopyShortcutExecuted = async () => {
   const current = await clipboardy.read();
@@ -26,6 +26,11 @@ const handlePasteShortcutExecuted = async () => {
   }
 }
 
+const handleClearClipboardHistory = () => {
+  console.log('clipboard manager: cleared clipboard history');
+  queuedClipboardHistory.reset();
+}
+
 keyboardListener.addListener(function (e, down) {
   const downKeys = down ? Object.keys(down).filter(key => down[key]) : [];
   if (downKeys.length === 3 && downKeys.includes('LEFT META') && downKeys.includes('LEFT SHIFT') && downKeys.includes('L')) {
@@ -37,6 +42,10 @@ keyboardListener.addListener(function (e, down) {
       console.log('clipboard manager: stopped');
       queuedClipboardHistory.reset();
     }
+  }
+
+  if (downKeys.length === 3 && downKeys.includes('LEFT META') && downKeys.includes('LEFT SHIFT') && downKeys.includes('C')) {
+    handleClearClipboardHistory();
   }
 
   if (listening && downKeys.length === 2 && downKeys.includes('LEFT META')) {

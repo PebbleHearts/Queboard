@@ -1,9 +1,14 @@
 class Queue {
-  constructor() {
+  constructor(maxItems = 100) {
     this.items = [];
+    this.maxItems = maxItems;
   }
 
   enqueue(item) {
+    if (this.items.length >= this.maxItems) {
+      this.items.shift();
+    }
+
     this.items.push(item);
   }
 
