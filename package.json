@@ -1,0 +1,18 @@
+{
+  "name": "clipboard-manager",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "clipboardy": "^4.0.0",
+    "node-global-key-listener": "^0.3.0"
+  }
+}
